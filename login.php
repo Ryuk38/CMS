@@ -1,15 +1,15 @@
 <?php
-$servername = "localhost";
+$servername = "localhost"; 
 $username = "root";
-$password = "";
-$dbname = "lms";
-
+$password = "root";
+$dbname = "cms";
+$port = "3307"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['username']) && isset($_POST['password'])) {
     $usnm = $_POST['username'];
     $psswd = $_POST['password'];
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname, $port);
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     } else {
@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .login-container {
       background: rgba(0, 0, 0, 0.7);
-      /* Semi-transparent background */
       padding: 50px;
       border-radius: 10px;
       width: 400px;
@@ -116,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .login-container button:hover {
       background-color: #ff6347;
-      /* Lighter orange */
     }
 
     .login-container p {
