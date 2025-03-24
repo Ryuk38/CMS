@@ -67,15 +67,16 @@ if (!isset($_SESSION['id'])) {
 <body>
   <div class="dashboard-container">
     <?php
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $username = "root";
-    $password = "";
-    $dbname = "cms";
+   $password = "root";
+   $dbname = "cms";
+   $port = "3307";
 
     $id = $_SESSION['id'];
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
+    $conn = new mysqli($servername, $username, $password, $dbname, (int)$port);
+    
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     } else {
@@ -95,16 +96,12 @@ if (!isset($_SESSION['id'])) {
             echo '<p>This is where you can manage your courses:</p>
             <a href="course.php">View Courses</a>
             <a href="enrolled_course.php">Enrolled Courses</a>
-            <a href="update_profile.php">Edit Profile</a>
-            <a href="change_pass.php">Change Password</a>
             <a href="logout.php">Logout</a>';
           } else {
             echo "<h2>Welcome to Your Dashboard </h2>";
             echo '<p>This is where you can manage your courses:</p>
             <a href="course.php">View Courses</a>
             <a href="enrolled_course.php">Enrolled Courses</a>
-            <a href="update_profile.php">Edit Profile</a>
-            <a href="change_pass.php">Change Password</a>
             <a href="logout.php">Logout</a>';
           }
         }
@@ -118,24 +115,19 @@ if (!isset($_SESSION['id'])) {
             echo "<h2>Welcome to Your Dashboard, " . $row["First_Name"] . "!</h2>";
             echo '<a href="course.php">View Courses</a>';
             echo '<a href="enrolled_course.php">Enrolled Students</a>';
-
-            $course_id_sql = "SELECT a.course_id FROM course a JOIN login b ON a.tr_id=b.id where tr_id=$id";
-            $result = $conn->query($course_id_sql);
-            if ($result->num_rows > 0) {
-              $row = $result->fetch_assoc();
-              echo '<a href="lesson.php?course_id=' . urlencode($row['course_id']) . '">Lessons</a>';
-              echo '<a href="update_profile.php">Edit Profile</a>';
-              echo '<a href="change_pass.php">Change Password</a>';
-              echo '<a href="logout.php">Logout</a>';
-            }
+            echo '<a href="logout.php">Logout</a>';
+            // $course_id_sql = "SELECT a.course_id FROM course a JOIN login b ON a.tr_id=b.id where tr_id=$id";
+            // $result = $conn->query($course_id_sql);
+            // if ($result->num_rows > 0) {
+            //   $row = $result->fetch_assoc();
+            //   echo '<a href="lesson.php?course_id=' . urlencode($row['course_id']) . '">Lessons</a>';
+            // }
           } 
           else {
             echo "<h2>Welcome to Your Dashboard </h2>";
             echo '<p>This is where you can manage your courses:</p>
             <a href="course.php">View Courses</a>
-            <a href="enrolled_course.php">Enrolled Courses</a>
-            <a href="update_profile.php">Edit Profile</a>
-            <a href="change_pass.php">Change Password</a>
+            <a href="enrolled_course.php">Enrolled Students</a>
             <a href="logout.php">Logout</a>';
           }
         } else
