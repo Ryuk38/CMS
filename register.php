@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
+$servername = "localhost"; 
 $username = "root";
-$password = "";
-$dbname = "cms";
+$password = "root"; 
+$dbname = "cms"; 
+$port = "3307"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -10,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $psswd = $_POST['password'];
         $user_type = 1;
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($servername, $username, $password, $dbname,$port);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
