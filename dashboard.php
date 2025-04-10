@@ -107,26 +107,22 @@ if (!isset($_SESSION['id'])) {
         }
         //teachers
 
-        elseif ($row['user_type'] === '2') {
+        elseif ($row['user_type']  === '2') {
           $sql = "SELECT teacher_info.First_Name FROM teacher_info JOIN login ON login.id = teacher_info.tr_id WHERE tr_id=$id";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             echo "<h2>Welcome to Your Dashboard, " . $row["First_Name"] . "!</h2>";
             echo '<a href="course.php">View Courses</a>';
+            echo '<a href="course.php">Assigned Courses</a>';
             echo '<a href="enrolled_course.php">Enrolled Students</a>';
             echo '<a href="logout.php">Logout</a>';
-            // $course_id_sql = "SELECT a.course_id FROM course a JOIN login b ON a.tr_id=b.id where tr_id=$id";
-            // $result = $conn->query($course_id_sql);
-            // if ($result->num_rows > 0) {
-            //   $row = $result->fetch_assoc();
-            //   echo '<a href="lesson.php?course_id=' . urlencode($row['course_id']) . '">Lessons</a>';
-            // }
           } 
           else {
             echo "<h2>Welcome to Your Dashboard </h2>";
             echo '<p>This is where you can manage your courses:</p>
             <a href="course.php">View Courses</a>
+            <a href="course.php">Assigned Courses</a> 
             <a href="enrolled_course.php">Enrolled Students</a>
             <a href="logout.php">Logout</a>';
           }
@@ -135,10 +131,8 @@ if (!isset($_SESSION['id'])) {
         {
           echo "<h2>Welcome to Your Admin Panel</h2><br>";
           echo '
-            <a href="admin_panel.php">Courses</a>
+            <a href="new_course.php">Add Courses</a>
             <a href="course.php">View Courses</a>
-            <a href="teachers.php">Assign Teachers</a>
-            <a href="change_pass.php">Change Password</a>
             <a href="logout.php">Logout</a>';
         }
       }

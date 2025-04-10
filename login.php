@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $psswd = $_POST['password'];
     $conn = new mysqli($servername, $username, $password, $dbname, $port);
     if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+      echo("Connection failed: " . $conn->connect_error);
     } else {
       $sql = "SELECT id,user_type FROM login WHERE username='$usnm' AND pass='$psswd'";
       $result = $conn->query($sql);
@@ -21,11 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         $_SESSION['id'] = $row['id'];
         $_SESSION['user_type'] = $row['user_type'];
-        if ($row['user_type'] == "0") {
-          header("location: admin_panel.php");
-        } else {
-          header("location: dashboard.php");
-        }
+        header("location: dashboard.php");
       } else {
         echo ' <Script>alert("Incorrect username and password")</script>';
         echo '<script>window.location.href="login.php";</script>';
@@ -81,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .login-container input[type="text"],
     .login-container input[type="password"] {
-      width: 100%;
+      width: 98%;
       padding: 12px;
       margin-top: 10px;
       border: none;
