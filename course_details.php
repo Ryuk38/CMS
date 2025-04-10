@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll']) && $user_ty
   $insert_stmt = $conn->prepare("INSERT INTO course_enrolled (stud_id, course_id, tr_id) VALUES (?, ?, ?)");
   $insert_stmt->bind_param("iii", $stud_id, $course_id, $tr_id);
   if ($insert_stmt->execute()) {
-    echo '<script>alert("Enrolled successfully!"); window.location.reload();</script>';
+    echo '<script>alert("Enrolled successfully!"); window.location.href="enrolled_course.php";</script>';
     exit();
   } else {
     echo '<script>alert("Enrollment failed. Try again later.");</script>';
