@@ -1,9 +1,10 @@
 <?php
-$host = '172.17.0.1';  // IP address of your host machine on Docker network
-$db = 'cms';            // Your database name
-$user = 'root';         // Your MySQL username
-$pass = 'root';         // Your MySQL password
-$port = 3307;           // MySQL port
+$servername = "mysql";
+$username = "root";
+$password = "root"; // or whatever your actual root password is
+$database = "cms";
+$port = 3306; // default MySQL port inside container
+
 
 // Create connection using the defined variables
 $conn = new mysqli($host, $user, $pass, $db, $port);
