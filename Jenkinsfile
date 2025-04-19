@@ -18,7 +18,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker-compose -f docker-compose.cms.yml up -d --build'
+                sh 'docker-compose -f docker-compose.yml up -d --build'
             }
         }
 
