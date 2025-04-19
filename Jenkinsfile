@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_HOST = 'tcp://host.docker.internal:2375' // Point to Docker Desktop daemon
+    }
     stages {
         stage('Clone') {
             steps {
@@ -10,19 +12,19 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                sh 'docker build -t my-cms-app .'
+                bat 'docker build -t my-cms-app .' // Use bat for Windows compatibility
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker-compose -f docker-compose.cms.yml up -d --build'
+                bat 'docker-compose -f docker-compose.cms.yml up -d --build' // Use bat for docker-compose
             }
         }
 
         stage('Test') {
             steps {
-                sh 'curl -s -o /dev/null -w "%{http_code}" http://localhost:8085 | grep 200'
+                bat 'curl -s -o NUL -w "%%{http_code}" http://localhost:8085 | findstr 200' // Windows-compatible curl
             }
         }
     }
