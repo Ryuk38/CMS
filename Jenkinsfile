@@ -22,14 +22,15 @@ pipeline {
             }
         }
 
-       stage('Test') {
+      stage('Test') {
     steps {
         sh '''
-            docker build -t selenium-runner .
+            docker build -f Dockerfile.selenium -t selenium-runner .
             docker run --rm selenium-runner
         '''
     }
 }
+
 
     }
 }
