@@ -10,3 +10,4 @@ services:
 networks:
   cms-network:
     external: true
+    
