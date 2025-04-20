@@ -26,7 +26,7 @@ pipeline {
     steps {
         script {
             sleep(10) // wait 10 seconds before making the request
-            sh 'curl -s -o /dev/null -w "%{http_code}" http://localhost:8085 | grep 200'
+sh 'curl -s -o /dev/null -w "%{http_code}" http://host.docker.internal:8085 | grep 200'
         }
     }
 }
