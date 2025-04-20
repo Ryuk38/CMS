@@ -6,8 +6,7 @@ services:
       - "8085:80"
     networks:
       - cms-network
-    depends_on:
-      - mysql
+   
 networks:
   cms-network:
     external: true
