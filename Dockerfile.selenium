@@ -18,4 +18,4 @@ RUN npm install -g selenium-side-runner
 WORKDIR /tests
 COPY selenium_tests/ ./selenium_tests/
 
-CMD ["selenium-side-runner", "-c", "browserName=chrome", "test4.side"]
+CMD ["selenium-side-runner", "-c", "browserName=chrome", "selenium_tests/login_test.side"]
