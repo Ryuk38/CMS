@@ -6,15 +6,8 @@ services:
       - "8085:80"
     networks:
       - cms-network
-  mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cms
-    ports:
-      - "3307:3306"
-    networks:
-      - cms-network
+    depends_on:
+      - mysql
 networks:
   cms-network:
-    driver: bridge
+    external: true
