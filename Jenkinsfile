@@ -22,21 +22,14 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                script {
-                    sleep(10)
+       stage('Test') {
+    steps {
+        sh '''
+            docker build -t selenium-runner .
+            docker run --rm selenium-runner
+        '''
+    }
+}
 
-                  sh '''
-    sudo curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -
-    sudo apt-get update
-    sudo apt-get install -y nodejs
-    sudo npm install -g selenium-side-runner
-    selenium-side-runner -c "browserName=chrome" selenium_tests/login_test.side
-'''
-
-                }
-            }
-        }
     }
 }
