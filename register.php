@@ -1,9 +1,10 @@
 <?php
-$servername = "localhost"; 
-$username = "root";
-$password = "root"; 
-$dbname = "cms"; 
-$port = "3307"; 
+$host = "mysql";        
+$user = "root";         
+$pass = "root";        
+$db   = "cms";          
+$port = 3306;           
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -12,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_type = $_POST['user_type']; 
         $user_type = ($user_type === 'student') ? 1 : 2;
 
-        $conn = new mysqli($servername, $username, $password, $dbname,$port);
+        $conn = new mysqli($host, $user, $pass, $db, $port);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
