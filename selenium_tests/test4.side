@@ -3,45 +3,57 @@
   "version": "2.0",
   "name": "test4",
   "url": "http://localhost:8085",
-  "tests": [{
-    "id": "a942caff-1581-44bd-be09-6ae91e7e66dd",
-    "name": "testing",
-    "commands": [{
-      "id": "f786f5b1-8a1b-48fa-afca-c3a70fa903b4",
-      "comment": "",
-      "command": "open",
-      "target": "/login.php",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "2a0cb500-58d2-40b4-afe1-0689c9b37b58",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1152x648",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "c7d56c06-1e0f-473a-ae8a-78f507853a70",
-      "comment": "",
-      "command": "click",
-      "target": "css=button",
-      "targets": [
-        ["css=button", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }]
-  }],
-  "suites": [{
-    "id": "8c81dbda-f988-4cf7-89f5-55c2bc33f07b",
-    "name": "Default Suite",
-    "persistSession": false,
-    "parallel": false,
-    "timeout": 300,
-    "tests": ["a942caff-1581-44bd-be09-6ae91e7e66dd"]
-  }],
-  "urls": ["http://localhost:8085/"],
+  "tests": [
+    {
+      "id": "a942caff-1581-44bd-be09-6ae91e7e66dd",
+      "name": "Login Test",
+      "commands": [
+        {
+          "id": "f786f5b1-8a1b-48fa-afca-c3a70fa903b4",
+          "comment": "",
+          "command": "open",
+          "target": "/login.php",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2a0cb500-58d2-40b4-afe1-0689c9b37b58",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1152x648",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c7d56c06-1e0f-473a-ae8a-78f507853a70",
+          "comment": "",
+          "command": "click",
+          "target": "css=button",
+          "targets": [
+            ["css=button", "css:finder"],
+            ["xpath=//button[@type='submit']", "xpath:attributes"],
+            ["xpath=//button", "xpath:position"],
+            ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+          ],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "8c81dbda-f988-4cf7-89f5-55c2bc33f07b",
+      "name": "Default Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "a942caff-1581-44bd-be09-6ae91e7e66dd"
+      ]
+    }
+  ],
+  "urls": [
+    "http://localhost:8085/"
+  ],
   "plugins": []
 }
