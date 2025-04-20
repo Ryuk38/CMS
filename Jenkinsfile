@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_HOST = 'tcp://host.docker.internal:2375' // Connect to Docker Desktop daemon
+    }
     stages {
         stage('Clone') {
             steps {
@@ -16,14 +18,18 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker-compose -f docker-compose.cms.yml up -d --build'
+                sh 'docker-compose -f docker-compose.yml up -d --build'
             }
         }
 
         stage('Test') {
-            steps {
-                sh 'curl -s -o /dev/null -w "%{http_code}" http://localhost:8085 | grep 200'
-            }
+    steps {
+        script {
+            sleep(10) // wait 10 seconds before making the request
+sh 'curl -s -o /dev/null -w "%{http_code}" http://host.docker.internal:8085 | grep 200'
         }
+    }
+}
+
     }
 }

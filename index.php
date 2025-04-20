@@ -1,17 +1,15 @@
 <?php
-$host = 'host.docker.internal';
-$db = 'cms';
-$user = 'root';
-$pass = 'root';
-$port = 3307;
+$host = "mysql";        // Use the MySQL container name
+$user = "root";         // MySQL username
+$pass = "root";         // MySQL password
+$db   = "cms";          // Name of your DB (you can check it in phpMyAdmin)
+$port = 3306;           // Default MySQL port
 
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("❌ Connection failed: " . $conn->connect_error);
 }
-
-echo "Welcome to CMS!";
-$conn->close();
+echo "✅ Successfully connected to MySQL ";
 ?>
