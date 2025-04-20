@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['username']) && isset($_POST['password'])) {
     $usnm = $_POST['username'];
     $psswd = $_POST['password'];
-    $conn = new mysqli($servername, $username, $password, $dbname, $port);
+    $conn = new mysqli($host, $user, $pass, $db, $port);
     if ($conn->connect_error) {
       echo("Connection failed: " . $conn->connect_error);
     } else {
