@@ -27,12 +27,14 @@ pipeline {
                 script {
                     sleep(10)
 
-                    sh '''
-                        curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-                        apt-get install -y nodejs
-                        npm install -g selenium-side-runner
-                        selenium-side-runner -c "browserName=chrome" selenium_tests/login_test.side
-                    '''
+                  sh '''
+    sudo curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -
+    sudo apt-get update
+    sudo apt-get install -y nodejs
+    sudo npm install -g selenium-side-runner
+    selenium-side-runner -c "browserName=chrome" selenium_tests/login_test.side
+'''
+
                 }
             }
         }
