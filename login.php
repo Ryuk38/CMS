@@ -1,10 +1,9 @@
 <?php
-$servername = "host.docker.internal";
-$username = "root";
-$password = "root";
-$dbname = "cms";
-$port = 3307;
-
+$host = "mysql";        
+$user = "root";         
+$pass = "root";        
+$db   = "cms";          
+$port = 3306;           
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['username']) && isset($_POST['password'])) {
