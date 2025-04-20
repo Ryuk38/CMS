@@ -1,13 +1,20 @@
 version: '3.8'
-
 services:
   cms:
     build: .
     ports:
-      - "8085:80" 
+      - "8085:80"
     networks:
-      - dev-net
-
+      - cms-network
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cms
+    ports:
+      - "3307:3306"
+    networks:
+      - cms-network
 networks:
-  dev-net:
-    external: false
+  cms-network:
+    driver: bridge
