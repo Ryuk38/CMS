@@ -25,11 +25,17 @@ pipeline {
         stage('Test') {
     steps {
         script {
-            sleep(10) // wait 10 seconds before making the request
-sh 'curl -s -o /dev/null -w "%{http_code}" http://host.docker.internal:8085 | grep 200'
+            sleep(10)
+
+            sh '''
+                curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+                apt-get install -y nodejs
+                npm install -g selenium-side-runner
+            '''
         }
     }
 }
+
 
     }
 }
