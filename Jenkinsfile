@@ -22,11 +22,15 @@ pipeline {
             }
         }
 
-        stage('Run Selenium Tests') {
+       stage('Run Selenium Test') {
             steps {
                 sh '''
                     docker build -f Dockerfile.selenium -t selenium-runner .
-                    docker run --rm selenium-runner
+                    docker run --rm selenium-runner bash -c '
+                        TEST_DIR=/tmp/profile-$RANDOM &&
+                        mkdir -p $TEST_DIR &&
+                        selenium-side-runner --chromeOptions.args="--user-data-dir=$TEST_DIR" selenium_tests/test4.side
+                    '
                 '''
             }
         }
