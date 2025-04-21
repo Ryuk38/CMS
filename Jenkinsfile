@@ -32,11 +32,6 @@ pipeline {
             }
         }
 
-        stage('Shutdown') {
-            steps {
-                sh 'docker-compose down'
-            }
-        }
 
 
     }
