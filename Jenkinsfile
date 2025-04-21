@@ -26,7 +26,7 @@ pipeline {
     steps {
         sh '''
             docker build -f Dockerfile.selenium -t selenium-runner .
-            docker run --rm selenium-runner bash -c "TEST_DIR=/tmp/profile-$(echo $RANDOM) && mkdir -p $TEST_DIR && selenium-side-runner --browser chrome --browser-option="--user-data-dir=$TEST_DIR" selenium_tests/test4.side"
+docker run --rm selenium-runner bash -c "TEST_DIR=/tmp/profile-$(echo $RANDOM) && echo $TEST_DIR && mkdir -p $TEST_DIR && selenium-side-runner --browser chrome --browser-option=\"--user-data-dir=$TEST_DIR\" selenium_tests/test4.side"
         '''
     }
 }
