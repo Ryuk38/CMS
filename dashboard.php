@@ -115,7 +115,7 @@ if (!isset($_SESSION['id'])) {
             $row = $result->fetch_assoc();
             echo "<h2>Welcome to Your Dashboard, " . $row["First_Name"] . "!</h2>";
             echo '<a href="course.php">View Courses</a>';
-            echo '<a href="course.php">Assigned Courses</a>';
+            echo '<a href="assigned_course.php">Assigned Courses</a>';
             echo '<a href="enrolled_course.php">Enrolled Students</a>';
             echo '<a href="logout.php">Logout</a>';
           } 
@@ -123,7 +123,7 @@ if (!isset($_SESSION['id'])) {
             echo "<h2>Welcome to Your Dashboard </h2>";
             echo '<p>This is where you can manage your courses:</p>
             <a href="course.php">View Courses</a>
-            <a href="course.php">Assigned Courses</a> 
+            <a href="assigned_course.php">Assigned Courses</a> 
             <a href="enrolled_course.php">Enrolled Students</a>
             <a href="logout.php">Logout</a>';
           }
