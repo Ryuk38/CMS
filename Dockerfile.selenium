@@ -20,16 +20,15 @@ RUN CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_R
 # Install selenium-side-runner
 RUN npm install -g selenium-side-runner
 
+# Create the /tests directory explicitly
+RUN mkdir -p /tests
+
 # Set working directory
 WORKDIR /tests
 
 # Copy tests and config
 COPY selenium_tests/ ./selenium_tests/
-COPY .side.yml .  # Copy configuration file
-
-# Set environment variable for Chrome binary location
-ENV CHROME_BIN=/usr/bin/google-chrome-stable
+COPY .side.yml /tests/
 
 # Define the entrypoint for running tests
-# Now supports running any test passed as an argument
-CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner --chrome $CHROME_BIN selenium_tests/${TEST_FILE:-test4.side}"]
+CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner selenium_tests/test4.side"]
