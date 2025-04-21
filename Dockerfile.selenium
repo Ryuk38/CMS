@@ -25,8 +25,11 @@ WORKDIR /tests
 
 # Copy tests and config
 COPY selenium_tests/ ./selenium_tests/
-COPY .side.yml .
+COPY .side.yml .  # Copy configuration file
+
+# Set environment variable for Chrome binary location
+ENV CHROME_BIN=/usr/bin/google-chrome-stable
 
 # Define the entrypoint for running tests
-CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner selenium_tests/test4.side"]
-
+# Now supports running any test passed as an argument
+CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner --chrome $CHROME_BIN selenium_tests/${TEST_FILE:-test4.side}"]
