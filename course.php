@@ -94,16 +94,15 @@ if (!isset($_SESSION['id'])) {
 
 <body>
   <div class="dashboard-container">
-    <h2>Explore Your Courses</h2>
+    <h2>Explore Available Courses</h2>
     <a class="back-link" href="dashboard.php">Back to Dashboard</a>
+
     <?php
-    $id = $_SESSION['id']; // teacher ID
     $host = "mysql";        
     $user = "root";         
     $pass = "root";        
     $db   = "cms";          
     $port = 3306;           
-    
 
     $conn = new mysqli($host, $user, $pass, $db, $port);
 
@@ -111,11 +110,8 @@ if (!isset($_SESSION['id'])) {
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT course_id, course_name, course_desc, syllabus FROM course WHERE tr_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT course_id, course_name, course_desc, syllabus FROM course";
+    $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
@@ -128,11 +124,10 @@ if (!isset($_SESSION['id'])) {
       }
     } else {
       echo '<div class="course">';
-      echo '<h3>No Courses Assigned</h3>';
+      echo '<h3>No Courses Available</h3>';
       echo '</div>';
     }
 
-    $stmt->close();
     $conn->close();
     ?>
   </div>
