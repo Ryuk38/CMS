@@ -29,8 +29,7 @@ pipeline {
                     docker run --rm selenium-runner bash -c '
                         TEST_DIR=/tmp/profile-$RANDOM &&
                         mkdir -p $TEST_DIR &&
-                        selenium-side-runner --chromeOptions.args="--user-data-dir=$TEST_DIR" selenium_tests/test4.side
-                    '
+selenium-side-runner --browser chrome --browser-option="--user-data-dir=$TEST_DIR" selenium_tests/test4.side                    '
                 '''
             }
         }
