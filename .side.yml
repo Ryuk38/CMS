@@ -1,0 +1,8 @@
+capabilities:
+  browserName: chrome
+  chromeOptions:
+    args:
+      - "--headless"
+      - "--no-sandbox"
+      - "--disable-dev-shm-usage"
+timeout: 60000
