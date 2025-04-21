@@ -27,5 +27,6 @@ WORKDIR /tests
 COPY selenium_tests/ ./selenium_tests/
 COPY .side.yml .
 
-# Run tests
-CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner selenium_tests/test4.side"]
+# Define the entrypoint for running tests
+CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner --browserName=chrome --chromeOptions.args=[\"--headless\", \"--no-sandbox\", \"--disable-dev-shm-usage\"] selenium_tests/test4.side"]
+
