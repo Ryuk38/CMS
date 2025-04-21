@@ -2,7 +2,7 @@
   "id": "3ebf7712-5c2b-44c2-9bab-2a30dba0faaa",
   "version": "2.0",
   "name": "test4",
-  "url": "http://localhost:8085",
+  "url": "http://host.docker.internal:8085",
   "tests": [
     {
       "id": "a942caff-1581-44bd-be09-6ae91e7e66dd",
