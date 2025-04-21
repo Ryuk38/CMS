@@ -21,10 +21,5 @@ WORKDIR /tests
 COPY selenium_tests/ ./selenium_tests/
 
 # Run the test in headless mode with isolated Chrome profile
-CMD bash -c '\
-    PROFILE_DIR=/tmp/profile-$RANDOM && \
-    mkdir -p $PROFILE_DIR && \
-    selenium-side-runner \
-        --browser chrome \
-        --browser-options="--headless,--no-sandbox,--disable-dev-shm-usage,--user-data-dir=$PROFILE_DIR" \
-        selenium_tests/test4.side'
+CMD ["bash", "-c", "PROFILE_DIR=/tmp/profile-$RANDOM && mkdir -p $PROFILE_DIR && selenium-side-runner -c 'chromeOptions.args=[\"--headless\", \"--no-sandbox\", \"--disable-dev-shm-usage\", \"--user-data-dir=$PROFILE_DIR\"]' selenium_tests/test4.side"]
+
