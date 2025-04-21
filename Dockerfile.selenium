@@ -17,6 +17,9 @@ RUN CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_R
     unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/chromedriver
 
+# Set the CHROME_BIN environment variable
+ENV CHROME_BIN=/usr/bin/google-chrome-stable
+
 # Install selenium-side-runner
 RUN npm install -g selenium-side-runner
 
